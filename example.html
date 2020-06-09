@@ -10,7 +10,7 @@
     #callButton { position: absolute; display: none; left: 50%; font-size: 2em; bottom: 5%; border-radius: 1em; }
   </style>
 </head>
-<script src="/socket.io/socket.io.js"></script>
+<script src="/socket.io.js"></script>
 
 <video id="localVideo" autoplay muted></video>
 <video id="remoteVideo" autoplay></video>
@@ -34,7 +34,7 @@ navigator.getUserMedia(
 
 function gotStream(stream) {
   document.getElementById("callButton").style.display = 'inline-block';
-  document.getElementById("localVideo").src = URL.createObjectURL(stream);
+  document.getElementById("localVideo").srcObject = stream;//URL.createObjectURL(stream);
 
   pc = new PeerConnection(null);
   pc.addStream(stream);
@@ -80,7 +80,7 @@ function gotIceCandidate(event){
 }
 
 function gotRemoteStream(event){
-  document.getElementById("remoteVideo").src = URL.createObjectURL(event.stream);
+  document.getElementById("remoteVideo").srcObject = screenStream;// URL.createObjectURL(event.stream);
 }
 
 
